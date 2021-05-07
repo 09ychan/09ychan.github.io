@@ -47,16 +47,16 @@ function CreateRow(){
     cell1.appendChild(select);
     cell2.appendChild(amount_input);
     cell3.innerHTML = 1000;
-
+    cell3.title = cell3.innerHTML;
 
 }
 
 function calculate_remainder(id){
     let amount = "amount_" + id;
     let bettingAmount = document.getElementById(amount).value;
-    let totalAmount = document.getElementById("totalBalance_" + id).innerHTML;
+    let totalAmount = document.getElementById("totalBalance_" + id).title;
 
-    totalAmount -= bettingAmount;
+    totalAmount = totalAmount - bettingAmount;
 
     document.getElementById("totalBalance_" + id).innerHTML = totalAmount;
 
