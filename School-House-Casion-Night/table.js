@@ -1,6 +1,7 @@
 var people = 0;
 
 function CreateRow(){
+    people++;
     console.log(people);
     var betting_options = ["Odd","Even","Green", "Red"];
     // Find a <table> element with id="myTable":
@@ -10,11 +11,18 @@ function CreateRow(){
     // Create an empty <tr> element and add it to the 1st position of the table:
     let row = table.insertRow();
 
-    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+    // Insert new cells (<td> elements) at the 1st, 2nd, 3rd and 4th position of the "new" <tr> element with ids:
     let cell0 = row.insertCell(0);
+    cell0.setAttribute("id", "name_" + people)
+
     let cell1 = row.insertCell(1);
+    cell1.setAttribute("id", "bettingChoice_" + people)
+
     let cell2 = row.insertCell(2);
+    cell2.setAttribute("id", "amount_" + people)
+    
     let cell3 = row.insertCell(3);
+    cell3.setAttribute("id", "totalBalance_" + people)
 
     //creates the dropdown
     let select = document.createElement("select");
