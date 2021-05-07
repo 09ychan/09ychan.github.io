@@ -7,6 +7,7 @@ function CreateRow(){
     // Find a <table> element with id="myTable":
     var table = document.getElementById("main_table");
     let new_name = document.getElementById("new_name_input").value;
+    document.getElementById("new_name_input").value = "";
 
     // Create an empty <tr> element and add it to the 1st position of the table:
     let row = table.insertRow();
@@ -58,6 +59,6 @@ function calculate_remainder(id){
 }
 
 window.onload = function(){
-    var button = document.getElementById("123");
-    button.addEventListener("click",CreateRow);
+    var button = document.getElementById("new_name_input");
+    button.addEventListener("change",CreateRow);
 }
