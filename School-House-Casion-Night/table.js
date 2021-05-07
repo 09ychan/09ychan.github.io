@@ -13,16 +13,15 @@ function CreateRow(){
 
     // Insert new cells (<td> elements) at the 1st, 2nd, 3rd and 4th position of the "new" <tr> element with ids:
     let cell0 = row.insertCell(0);
-    cell0.setAttribute("id", "name_" + people)
+    cell0.setAttribute("id", "name_" + people);
 
     let cell1 = row.insertCell(1);
-    cell1.setAttribute("id", "bettingChoice_" + people)
+    cell1.setAttribute("id", "bettingChoice_" + people);
 
     let cell2 = row.insertCell(2);
-    cell2.setAttribute("id", "amount_" + people)
     
     let cell3 = row.insertCell(3);
-    cell3.setAttribute("id", "totalBalance_" + people)
+    cell3.setAttribute("id", "totalBalance_" + people);
 
     //creates the dropdown
     let select = document.createElement("select");
@@ -36,7 +35,10 @@ function CreateRow(){
 
     //create input for amount
     let amount_input = document.createElement("input");
+    amount_input.setAttribute("onchange","calculate_remainder("+people+")");
     amount_input.placeholder = "Amount to bet";
+    amount_input.setAttribute("id", "amount_" + people);
+    amount_input.setAttribute("type","number");
 
 
     // Add some text to the new cells:
@@ -46,6 +48,13 @@ function CreateRow(){
     cell3.innerHTML = 1000;
 
 
+}
+
+function calculate_remainder(id){
+    console.log(id);
+    let amount = "amount_" + id;
+    alert(amount);
+    console.log(document.getElementById(amount).value);
 }
 
 window.onload = function(){
