@@ -51,10 +51,14 @@ function CreateRow(){
 }
 
 function calculate_remainder(id){
-    console.log(id);
     let amount = "amount_" + id;
-    alert(amount);
-    console.log(document.getElementById(amount).value);
+    let bettingAmount = document.getElementById(amount).value;
+    let totalAmount = document.getElementById("totalBalance_" + id).innerHTML;
+
+    totalAmount -= bettingAmount;
+
+    document.getElementById("totalBalance_" + id).innerHTML = totalAmount;
+
 }
 
 window.onload = function(){
