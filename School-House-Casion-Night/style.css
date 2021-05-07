@@ -2,8 +2,22 @@ body{
     background-color: blueviolet;
 }
 
-#main_table, th, td{
-    width: 75%;
+#main_table{
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#table_div{
+    width:70%;
+    background-color: white;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td{
+    width:30%;
     background-color: white;
     border: 1px solid black;
     border-collapse: collapse;
