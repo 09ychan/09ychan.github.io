@@ -66,3 +66,7 @@ window.onload = function(){
     var button = document.getElementById("new_name_input");
     button.addEventListener("change",CreateRow);
 }
+
+function Roulette(){
+    
+}
