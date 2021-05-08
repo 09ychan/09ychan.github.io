@@ -3,28 +3,8 @@ var people = 0;
 function CreateRow(){
     people++;
     console.log(people);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    var betting_options = ["Odd","Even","Green", "Red"];
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
-    var betting_options = ["Odd","Even","Green", "Red"];
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
-    var betting_options = ["Odd","Even","Green", "Red"];
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
-    var betting_options = ["Odd","Even","Green", "Red"];
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
-    var betting_options = ["Odd","Even","Green", "Red"];
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
+    var betting_options = ["Number", "Even", "Odd", "Green", "Red", "Black"];
     // Find a <table> element with id="myTable":
-    let betting_options = ["Odd","Even","Green", "Red"];
     var table = document.getElementById("body_of_table");
     let new_name = document.getElementById("new_name_input").value;
     document.getElementById("new_name_input").value = "";
@@ -39,7 +19,6 @@ function CreateRow(){
     cell0.setAttribute("ondblclick", "change_name("+people+")");
 
     let cell1 = row.insertCell(1);
-    cell1.setAttribute("id", "bettingChoice_" + people);
 
     let cell2 = row.insertCell(2);
     
@@ -48,6 +27,9 @@ function CreateRow(){
 
     //creates the dropdown
     let select = document.createElement("select");
+    select.setAttribute("id", "bettingChoice_" + people);
+    select.setAttribute("onchange", "numField("+people+")")
+
     for (const choice of betting_options){
         let option = document.createElement("option");
         option.value = choice;
@@ -55,6 +37,11 @@ function CreateRow(){
         select.appendChild(option);
     }
 
+    // Create number input field:
+    let numInput = document.createElement("input");
+    numInput.setAttribute("class", "numBetInput");
+    numInput.setAttribute("id", "numTextField_" + people);
+    numInput.setAttribute("type", "number");
 
     //create input for amount
     let amount_input = document.createElement("input");
@@ -62,12 +49,12 @@ function CreateRow(){
     amount_input.placeholder = "Amount to bet";
     amount_input.setAttribute("id", "amount_" + people);
     amount_input.setAttribute("type","number");
-    amount_input.setAttribute("class","amount_input");
 
 
-    // Add some text to the new cells:
+    // Fill out the new cells with created elements:
     cell0.innerHTML = new_name;
     cell1.appendChild(select);
+    cell1.appendChild(numInput)
     cell2.appendChild(amount_input);
     cell3.innerHTML = 1000;
     cell3.title = cell3.innerHTML;
@@ -78,28 +65,20 @@ function calculate_remainder(id){
     let amount = "amount_" + id;
     let bettingAmount = document.getElementById(amount).value;
     let totalAmount = document.getElementById("totalBalance_" + id).title;
-    bettingAmount = Number(bettingAmount);
-    totalAmount = Number(totalAmount);
 
-    if (bettingAmount > totalAmount){
-        alert("You cannot bet this much. It is more than you have.");
-    }else{
-        totalAmount = totalAmount - bettingAmount;
+    totalAmount = totalAmount - bettingAmount;
 
-        document.getElementById("totalBalance_" + id).innerHTML = totalAmount;
-    }
+    document.getElementById("totalBalance_" + id).innerHTML = totalAmount;
 
 }
 
 window.onload = function(){
-    let betting_options = ["Odd","Even","Green", "Red"];
-    create_dropdown_result(betting_options);
-    let nameInput = document.getElementById("new_name_input");
-    let rouletteSubmitButton = document.getElementById("submitRouletteResult");
+    var nameInput = document.getElementById("new_name_input");
+    var rouletteSubmitButton = document.getElementById("submitRouletteResult");
 
     nameInput.addEventListener("change",CreateRow);
     rouletteSubmitButton.addEventListener("click", Roulette);
-};
+}
 
 function Roulette(){
     let colour = document.getElementById("coloursDropdown").value;
@@ -108,16 +87,12 @@ function Roulette(){
 
     if (number > 36 || number < 0){
         alert("There are only numbers 0 - 36 on a roulette wheel, silly.");
-        //return null;
+        return null;
     }
+
     if (number % 2 != 0){
         odd = true;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     for (var i = 1; i <= people; i++){
         let totalBalance = document.getElementById("totalBalance_" + i);
@@ -151,56 +126,27 @@ function Roulette(){
         else if (playerChoice == "Green" && colour == "Green"){
             console.log("Someone got Money!");
         }
-    };
-};
-
-
-
-=======
-=======
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
+    }
 }
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
 
 function change_name(id){
     let original_name = document.getElementById("name_"+id).innerText;
     let output = document.getElementById("name_"+id);
     let input_for_name = document.createElement("input");
-    input_for_name.setAttribute('id',"input_for_name")
+    input_for_name.setAttribute('id',"input_for_name");
     input_for_name.value = original_name;
     output.innerText = "";
     output.appendChild(input_for_name);
     output.addEventListener("change",function(){
         let new_name = input_for_name.value;
-        if (new_name = ""){
+        if (new_name == ""){
             document.getElementById("body_of_table").deleteRow();
         }
-        document.getElementById("input_for_name").remove();
-        output.innerText = input_for_name.value;
+        output.innerText = new_name;
+        output.setAttribute("ondblclick", "change_name("+id+")");
     })
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-};
-
-function create_dropdown_result(betting_options){
-    let select = document.getElementById("result_dropdown");
-    for (const choice of betting_options){
-        let option = document.createElement("option");
-        option.value = choice;
-        option.text = choice.charAt(0).toUpperCase() + choice.slice(1);
-        select.appendChild(option);
-    }
-};
+}
 
 function numField(num){
     let dropdown = document.getElementById("bettingChoice_" + num).value;
@@ -213,19 +159,4 @@ function numField(num){
     else{
         num_Field.style.display = "none";
     }
-};
-=======
 }
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
-}
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
-}
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
-}
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
-=======
-}
->>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
