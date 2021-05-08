@@ -3,10 +3,6 @@ var people = 0;
 function CreateRow(){
     people++;
     console.log(people);
-<<<<<<< HEAD
-=======
-    var betting_options = ["Number", "Even", "Odd", "Green", "Red", "Black"];
->>>>>>> aeef703f4432a819dd9c0d97358e37943f4869bf
     // Find a <table> element with id="myTable":
     let betting_options = ["Odd","Even","Green", "Red"];
     var table = document.getElementById("body_of_table");
@@ -102,10 +98,6 @@ function Roulette(){
         alert("There are only numbers 0 - 36 on a roulette wheel, silly.");
         //return null;
     }
-<<<<<<< HEAD
-};
-=======
-
     if (number % 2 != 0){
         odd = true;
     }
@@ -142,9 +134,11 @@ function Roulette(){
         else if (playerChoice == "Green" && colour == "Green"){
             console.log("Someone got Money!");
         }
-    }
-}
->>>>>>> aeef703f4432a819dd9c0d97358e37943f4869bf
+    };
+};
+
+
+
 
 function change_name(id){
     let original_name = document.getElementById("name_"+id).innerText;
@@ -163,7 +157,6 @@ function change_name(id){
         output.setAttribute("ondblclick", "change_name("+id+")");
     })
 
-<<<<<<< HEAD
 };
 
 function create_dropdown_result(betting_options){
@@ -175,8 +168,6 @@ function create_dropdown_result(betting_options){
         select.appendChild(option);
     }
 };
-=======
-}
 
 function numField(num){
     let dropdown = document.getElementById("bettingChoice_" + num).value;
@@ -189,5 +180,4 @@ function numField(num){
     else{
         num_Field.style.display = "none";
     }
-}
->>>>>>> aeef703f4432a819dd9c0d97358e37943f4869bf
+};
