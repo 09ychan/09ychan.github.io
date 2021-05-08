@@ -2,8 +2,7 @@ var people = 0;
 
 function CreateRow(){
     people++;
-    console.log(people);
-    var betting_options = ["Number", "Even", "Odd", "Green", "Red", "Black"];
+    var betting_options = ["Even", "Odd", "Green", "Red", "Black"];
     // Find a <table> element with id="myTable":
     var table = document.getElementById("body_of_table");
     let new_name = document.getElementById("new_name_input").value;
@@ -28,7 +27,6 @@ function CreateRow(){
     //creates the dropdown
     let select = document.createElement("select");
     select.setAttribute("id", "bettingChoice_" + people);
-    select.setAttribute("onchange", "numField("+people+")")
 
     for (const choice of betting_options){
         let option = document.createElement("option");
@@ -37,11 +35,12 @@ function CreateRow(){
         select.appendChild(option);
     }
 
-    // Create number input field:
-    let numInput = document.createElement("input");
-    numInput.setAttribute("class", "numBetInput");
-    numInput.setAttribute("id", "numTextField_" + people);
-    numInput.setAttribute("type", "number");
+    for (var i = 0; i <= 36; i++){
+        let option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        select.appendChild(option);
+    }
 
     //create input for amount
     let amount_input = document.createElement("input");
@@ -54,7 +53,6 @@ function CreateRow(){
     // Fill out the new cells with created elements:
     cell0.innerHTML = new_name;
     cell1.appendChild(select);
-    cell1.appendChild(numInput)
     cell2.appendChild(amount_input);
     cell3.innerHTML = 1000;
     cell3.title = cell3.innerHTML;
@@ -65,6 +63,13 @@ function calculate_remainder(id){
     let amount = "amount_" + id;
     let bettingAmount = document.getElementById(amount).value;
     let totalAmount = document.getElementById("totalBalance_" + id).title;
+
+    console.log(bettingAmount, totalAmount);
+
+    if (bettingAmount > Number(totalAmount)){
+        alert("You can't bet more than you have.");
+        return null;
+    }
 
     totalAmount = totalAmount - bettingAmount;
 
@@ -99,13 +104,6 @@ function Roulette(){
         let playerBettingAmount = document.getElementById("amount_" + i);
         let playerChoice = document.getElementById("bettingChoice_" + i).value;
 
-        if (playerChoice == "Number"){
-            let numberInput = document.getElementById("numTextField_" + i).value;
-            if (number == numberInput){
-                //Add money
-            }
-        }
-
         else if (playerChoice == "Odd" && odd == true){
             console.log("Odd");
         }
@@ -124,6 +122,12 @@ function Roulette(){
 
         else if (playerChoice == "Green" && colour == "Green"){
             console.log("Someone got Money!");
+        }
+
+        else{
+            if (playerChoice == number){
+                //Player has got the number
+            }
         }
     }
 }
@@ -145,17 +149,4 @@ function change_name(id){
         output.setAttribute("ondblclick", "change_name("+id+")");
     })
 
-}
-
-function numField(num){
-    let dropdown = document.getElementById("bettingChoice_" + num).value;
-    let num_Field = document.getElementById("numTextField_" + num);
-
-    if (dropdown == "Number"){
-        num_Field.style.display = "initial";
-    }
-
-    else{
-        num_Field.style.display = "none";
-    }
 }
