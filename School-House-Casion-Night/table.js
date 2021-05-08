@@ -91,17 +91,17 @@ function change_name(id){
     let original_name = document.getElementById("name_"+id).innerText;
     let output = document.getElementById("name_"+id);
     let input_for_name = document.createElement("input");
-    input_for_name.setAttribute('id',"input_for_name")
+    input_for_name.setAttribute('id',"input_for_name");
     input_for_name.value = original_name;
     output.innerText = "";
     output.appendChild(input_for_name);
     output.addEventListener("change",function(){
         let new_name = input_for_name.value;
-        if (new_name = ""){
+        if (new_name == ""){
             document.getElementById("body_of_table").deleteRow();
         }
-        document.getElementById("input_for_name").remove();
-        output.innerText = input_for_name.value;
+        output.innerText = new_name;
+        output.setAttribute("ondblclick", "change_name("+id+")");
     })
 
 }
