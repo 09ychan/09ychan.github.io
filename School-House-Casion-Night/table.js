@@ -4,6 +4,10 @@ function CreateRow(){
     people++;
     console.log(people);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    var betting_options = ["Odd","Even","Green", "Red"];
+>>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
 =======
     var betting_options = ["Odd","Even","Green", "Red"];
 >>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
@@ -98,6 +102,7 @@ function Roulette(){
         odd = true;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     for (var i = 1; i <= people; i++){
         let totalBalance = document.getElementById("totalBalance_" + i);
@@ -137,6 +142,8 @@ function Roulette(){
 
 
 =======
+=======
+>>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
 }
 >>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
 
@@ -157,6 +164,7 @@ function change_name(id){
         output.setAttribute("ondblclick", "change_name("+id+")");
     })
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -182,6 +190,9 @@ function numField(num){
         num_Field.style.display = "none";
     }
 };
+=======
+}
+>>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
 =======
 }
 >>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
