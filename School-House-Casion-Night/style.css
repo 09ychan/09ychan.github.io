@@ -27,6 +27,7 @@ body{
     width:20%;
 }
 
+<<<<<<< HEAD
 #col_net{
     width:10%;
 }
@@ -76,4 +77,17 @@ body{
 
 .amount_input{
     width:100%;
+=======
+#routlette_div{
+	position: absolute;
+	margin:50px;
+	right:0px;
+	top:10px;
+	height: 150px;
+	width: 500px;
+}
+
+.numBetInput{
+	padding-left: 10px;
+>>>>>>> aeef703f4432a819dd9c0d97358e37943f4869bf
 }
