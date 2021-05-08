@@ -3,8 +3,8 @@ var people = 0;
 function CreateRow(){
     people++;
     console.log(people);
-    var betting_options = ["Odd","Even","Green", "Red"];
     // Find a <table> element with id="myTable":
+    let betting_options = ["Odd","Even","Green", "Red"];
     var table = document.getElementById("body_of_table");
     let new_name = document.getElementById("new_name_input").value;
     document.getElementById("new_name_input").value = "";
@@ -42,6 +42,7 @@ function CreateRow(){
     amount_input.placeholder = "Amount to bet";
     amount_input.setAttribute("id", "amount_" + people);
     amount_input.setAttribute("type","number");
+    amount_input.setAttribute("class","amount_input");
 
 
     // Add some text to the new cells:
@@ -57,20 +58,28 @@ function calculate_remainder(id){
     let amount = "amount_" + id;
     let bettingAmount = document.getElementById(amount).value;
     let totalAmount = document.getElementById("totalBalance_" + id).title;
+    bettingAmount = Number(bettingAmount);
+    totalAmount = Number(totalAmount);
 
-    totalAmount = totalAmount - bettingAmount;
+    if (bettingAmount > totalAmount){
+        alert("You cannot bet this much. It is more than you have.");
+    }else{
+        totalAmount = totalAmount - bettingAmount;
 
-    document.getElementById("totalBalance_" + id).innerHTML = totalAmount;
+        document.getElementById("totalBalance_" + id).innerHTML = totalAmount;
+    }
 
 }
 
 window.onload = function(){
-    var nameInput = document.getElementById("new_name_input");
-    var rouletteSubmitButton = document.getElementById("submitRouletteResult");
+    let betting_options = ["Odd","Even","Green", "Red"];
+    create_dropdown_result(betting_options);
+    let nameInput = document.getElementById("new_name_input");
+    let rouletteSubmitButton = document.getElementById("submitRouletteResult");
 
     nameInput.addEventListener("change",CreateRow);
     rouletteSubmitButton.addEventListener("click", Roulette);
-}
+};
 
 function Roulette(){
     let colour = document.getElementById("coloursDropdown").value;
@@ -78,9 +87,9 @@ function Roulette(){
 
     if (number > 36 || number < 0){
         alert("There are only numbers 0 - 36 on a roulette wheel, silly.");
-        return null;
+        //return null;
     }
-}
+};
 
 function change_name(id){
     let original_name = document.getElementById("name_"+id).innerText;
@@ -99,4 +108,14 @@ function change_name(id){
         output.setAttribute("ondblclick", "change_name("+id+")");
     })
 
-}
+};
+
+function create_dropdown_result(betting_options){
+    let select = document.getElementById("result_dropdown");
+    for (const choice of betting_options){
+        let option = document.createElement("option");
+        option.value = choice;
+        option.text = choice.charAt(0).toUpperCase() + choice.slice(1);
+        select.appendChild(option);
+    }
+};

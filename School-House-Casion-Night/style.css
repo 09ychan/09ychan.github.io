@@ -5,7 +5,9 @@ body{
 #table_div{
     width:60%;
     margin:5px;
-    background-color: white;
+    margin-right: 0px;
+    float:left;
+    position:absolute;
 }
 
 .table td{
@@ -14,6 +16,7 @@ body{
 
 #new_name_input{
     margin:5px;
+    float:left;
 }
 
 #col_name{
@@ -24,11 +27,53 @@ body{
     width:20%;
 }
 
-#routlette_div{
-	position: absolute;
-	margin:50px;
-	right:0px;
-	top:10px;
-	height: 150px;
-	width: 500px;
+#col_net{
+    width:10%;
+}
+
+#col_choice{
+    width:10%;
+}
+
+#roulette_div{
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    float:right;
+    width:37%;
+    margin-top:6%;
+}
+
+#inner_padding{
+    padding:10px;
+}
+
+#label_result_input{
+    margin:4px;
+
+}
+
+.table{
+    background-color: white;
+}
+
+#submitRouletteResult{
+    margin:2px;
+}
+
+@media (min-width: 740px) {
+    #roulette_div{
+        margin-top:4%;
+    }
+}
+
+@media (max-width: 740px) {
+    #roulette_div{
+        margin-top:6%;
+    }
+}
+
+.amount_input{
+    width:100%;
 }
