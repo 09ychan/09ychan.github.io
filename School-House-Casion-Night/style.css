@@ -23,3 +23,12 @@ body{
 #col_amount{
     width:20%;
 }
+
+#routlette_div{
+	position: absolute;
+	margin:50px;
+	right:0px;
+	top:10px;
+	height: 150px;
+	width: 500px;
+}

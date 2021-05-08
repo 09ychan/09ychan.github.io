@@ -65,12 +65,21 @@ function calculate_remainder(id){
 }
 
 window.onload = function(){
-    var button = document.getElementById("new_name_input");
-    button.addEventListener("change",CreateRow);
+    var nameInput = document.getElementById("new_name_input");
+    var rouletteSubmitButton = document.getElementById("submitRouletteResult");
+
+    nameInput.addEventListener("change",CreateRow);
+    rouletteSubmitButton.addEventListener("click", Roulette);
 }
 
 function Roulette(){
-    
+    let colour = document.getElementById("coloursDropdown").value;
+    let number = document.getElementById("rouletteNumber").value;
+
+    if (number > 36 || number < 0){
+        alert("There are only numbers 0 - 36 on a roulette wheel, silly.");
+        return null;
+    }
 }
 
 function change_name(id){
