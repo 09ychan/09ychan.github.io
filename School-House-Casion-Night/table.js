@@ -75,10 +75,15 @@ window.onload = function(){
 function Roulette(){
     let colour = document.getElementById("coloursDropdown").value;
     let number = document.getElementById("rouletteNumber").value;
+    let odd = new Boolean(false);
 
     if (number > 36 || number < 0){
         alert("There are only numbers 0 - 36 on a roulette wheel, silly.");
         return null;
+    }
+
+    if (number % 2 != 0){
+        odd = true;
     }
 }
 
