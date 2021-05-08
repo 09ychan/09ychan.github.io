@@ -97,8 +97,7 @@ function Roulette(){
     for (var i = 1; i <= people; i++){
         let totalBalance = document.getElementById("totalBalance_" + i);
         let playerBettingAmount = document.getElementById("amount_" + i);
-        let tRow = document.getElementById("bettingChoice_" + i);
-        let playerChoice = tRow.value;
+        let playerChoice = document.getElementById("bettingChoice_" + i).value;
 
         if (playerChoice == "Number"){
             let numberInput = document.getElementById("numTextField_" + i).value;
