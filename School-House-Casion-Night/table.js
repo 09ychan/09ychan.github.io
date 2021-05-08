@@ -3,6 +3,10 @@ var people = 0;
 function CreateRow(){
     people++;
     console.log(people);
+<<<<<<< HEAD
+=======
+    var betting_options = ["Odd","Even","Green", "Red"];
+>>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
     // Find a <table> element with id="myTable":
     let betting_options = ["Odd","Even","Green", "Red"];
     var table = document.getElementById("body_of_table");
@@ -19,6 +23,7 @@ function CreateRow(){
     cell0.setAttribute("ondblclick", "change_name("+people+")");
 
     let cell1 = row.insertCell(1);
+    cell1.setAttribute("id", "bettingChoice_" + people);
 
     let cell2 = row.insertCell(2);
     
@@ -27,9 +32,6 @@ function CreateRow(){
 
     //creates the dropdown
     let select = document.createElement("select");
-    select.setAttribute("id", "bettingChoice_" + people);
-    select.setAttribute("onchange", "numField("+people+")")
-
     for (const choice of betting_options){
         let option = document.createElement("option");
         option.value = choice;
@@ -37,11 +39,6 @@ function CreateRow(){
         select.appendChild(option);
     }
 
-    // Create number input field:
-    let numInput = document.createElement("input");
-    numInput.setAttribute("class", "numBetInput");
-    numInput.setAttribute("id", "numTextField_" + people);
-    numInput.setAttribute("type", "number");
 
     //create input for amount
     let amount_input = document.createElement("input");
@@ -52,10 +49,9 @@ function CreateRow(){
     amount_input.setAttribute("class","amount_input");
 
 
-    // Fill out the new cells with created elements:
+    // Add some text to the new cells:
     cell0.innerHTML = new_name;
     cell1.appendChild(select);
-    cell1.appendChild(numInput)
     cell2.appendChild(amount_input);
     cell3.innerHTML = 1000;
     cell3.title = cell3.innerHTML;
@@ -101,6 +97,7 @@ function Roulette(){
     if (number % 2 != 0){
         odd = true;
     }
+<<<<<<< HEAD
 
     for (var i = 1; i <= people; i++){
         let totalBalance = document.getElementById("totalBalance_" + i);
@@ -139,6 +136,9 @@ function Roulette(){
 
 
 
+=======
+}
+>>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
 
 function change_name(id){
     let original_name = document.getElementById("name_"+id).innerText;
@@ -157,6 +157,7 @@ function change_name(id){
         output.setAttribute("ondblclick", "change_name("+id+")");
     })
 
+<<<<<<< HEAD
 };
 
 function create_dropdown_result(betting_options){
@@ -181,3 +182,6 @@ function numField(num){
         num_Field.style.display = "none";
     }
 };
+=======
+}
+>>>>>>> parent of aeef703 (Added some of the logic to roulette checking.)
