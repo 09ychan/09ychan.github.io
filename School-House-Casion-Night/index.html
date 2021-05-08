@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>School House Casion Night (Roulette)</title>
-    <link href="style.css" rel="stylesheet"></link>
     <script src="table.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet"></link>
 </head>
 <body>
     <h1>School House Casino Night</h1>
     <input id="new_name_input" placeholder="Name of New Player">
-        <button id="123">&#43</button>
-    <br>
     <div id="table_div">
-        <table id="main_table">
-            <tr>
-                <th>Name</th>
-                <th>Betting Choice</th>
-                <th>Amount</th>
-                <th>Net Value</th>
-            </tr>
+        <table id="main_table" class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" id="col_name">Name</th>
+                    <th scope="col" id="col_choice">Betting Choice</th>
+                    <th scope="col" id="col_amount">Amount</th>
+                    <th scope="col" id="col_net">Net Value</th>
+                </tr>
+            </thead>
+            <tbody id="body_of_table">
+
+            </tbody>
         </table>
     </div>
 

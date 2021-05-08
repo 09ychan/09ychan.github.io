@@ -5,7 +5,7 @@ function CreateRow(){
     console.log(people);
     var betting_options = ["Odd","Even","Green", "Red"];
     // Find a <table> element with id="myTable":
-    var table = document.getElementById("main_table");
+    var table = document.getElementById("body_of_table");
     let new_name = document.getElementById("new_name_input").value;
     document.getElementById("new_name_input").value = "";
 
@@ -15,6 +15,8 @@ function CreateRow(){
     // Insert new cells (<td> elements) at the 1st, 2nd, 3rd and 4th position of the "new" <tr> element with ids:
     let cell0 = row.insertCell(0);
     cell0.setAttribute("id", "name_" + people);
+    cell0.setAttribute("scope","row");
+    cell0.setAttribute("ondblclick", "change_name("+people+")");
 
     let cell1 = row.insertCell(1);
     cell1.setAttribute("id", "bettingChoice_" + people);
@@ -69,4 +71,23 @@ window.onload = function(){
 
 function Roulette(){
     
+}
+
+function change_name(id){
+    let original_name = document.getElementById("name_"+id).innerText;
+    let output = document.getElementById("name_"+id);
+    let input_for_name = document.createElement("input");
+    input_for_name.setAttribute('id',"input_for_name")
+    input_for_name.value = original_name;
+    output.innerText = "";
+    output.appendChild(input_for_name);
+    output.addEventListener("change",function(){
+        let new_name = input_for_name.value;
+        if (new_name = ""){
+            document.getElementById("body_of_table").deleteRow();
+        }
+        document.getElementById("input_for_name").remove();
+        output.innerText = input_for_name.value;
+    })
+
 }
