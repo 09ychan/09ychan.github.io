@@ -92,6 +92,8 @@ function Roulette(){
     let colour = document.getElementById("coloursDropdown").value;
     let number = document.getElementById("rouletteNumber").value;
     let odd = new Boolean(false);
+    let winners = new Array();
+    let amounts = new Array();
 
     if (number > 36 || number < 0){
         alert("There are only numbers 0 - 36 on a roulette wheel, silly.");
@@ -143,6 +145,11 @@ function Roulette(){
             }
         }
 
+        if (multiplier != 0){
+            winners.push(document.getElementById("name_" + i).innerHTML);
+            amounts.push(playerBettingAmount.value * multiplier);
+        }
+
         currentTotal = Number(currentTotal) + (playerBettingAmount.value * multiplier);
         totalBalance.title = currentTotal;
 
@@ -150,6 +157,8 @@ function Roulette(){
 
         playerBettingAmount.value = "";
     }
+
+    open_modal(winners, amounts);
 }
 
 function change_name(id){
@@ -171,10 +180,23 @@ function change_name(id){
 
 }
 
-function open_modal(){
+function open_modal(winners, amounts){
     document.getElementById("winner_div").style.display = "block";
+    let section = document.getElementById("modal-people");
+
+    for (var i = 0; i < winners.length; i++){
+        let text = document.createElement("P");
+        text.innerText = "- " + winners[i] + " won " + amounts[i];
+
+        console.log (text.innerText);
+
+        section.appendChild(text);
+    }
 }
 
 function close_modal(){
+    let section = document.getElementById("modal-people");
+    section.textContent = "";
+
     document.getElementById("winner_div").style.display = "none";
 }
