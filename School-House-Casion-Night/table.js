@@ -170,3 +170,11 @@ function change_name(id){
     })
 
 }
+
+function open_modal(){
+    document.getElementById("winner_div").style.display = "block";
+}
+
+function close_modal(){
+    document.getElementById("winner_div").style.display = "none";
+}

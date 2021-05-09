@@ -90,3 +90,15 @@ body{
 .numBetInput{
 	padding-left: 10px;
 }
+
+#winner_div{
+    display: none;
+    z-index: 1;
+    background-color: transparent;
+}
+
+.modal-content{
+    left:25%;
+    width:50%;
+    top:10%;
+}
