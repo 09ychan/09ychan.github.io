@@ -2,7 +2,7 @@ var people = 0;
 
 function CreateRow(){
     people++;
-    var betting_options = ["Even", "Odd", "Green", "Red", "Black"];
+    var betting_options = ["Even", "Odd", "High", "Low", "1st Dozen", "2nd Dozen", "3rd Dozen"];
     // Find a <table> element with id="myTable":
     var table = document.getElementById("body_of_table");
     let new_name = document.getElementById("new_name_input").value;
@@ -64,10 +64,13 @@ function calculate_remainder(id){
     let bettingAmount = document.getElementById(amount).value;
     let totalAmount = document.getElementById("totalBalance_" + id).title;
 
-    console.log(bettingAmount, totalAmount);
-
     if (bettingAmount > Number(totalAmount)){
         alert("You can't bet more than you have.");
+        return null;
+    }
+
+    if (bettingAmount < 0){
+        alert ("You can't bet negative numbers.");
         return null;
     }
 
@@ -103,32 +106,49 @@ function Roulette(){
         let totalBalance = document.getElementById("totalBalance_" + i);
         let playerBettingAmount = document.getElementById("amount_" + i);
         let playerChoice = document.getElementById("bettingChoice_" + i).value;
+        let currentTotal = totalBalance.innerHTML;
+        let multiplier = 0;
 
-        else if (playerChoice == "Odd" && odd == true){
-            console.log("Odd");
+        if (playerChoice == "Odd" && odd == true){
+            multiplier = 2;
         }
 
         else if (playerChoice == "Even" && odd == false){
-            console.log("Even");
+            multiplier = 2;
         }
 
-        else if (playerChoice == "Red" && colour == "Red"){
-            console.log("Someone got Red!");
+        else if (playerChoice == "High" && number >= 19){
+            multiplier = 2;
         }
 
-        else if (playerChoice == "Black" && colour == "Black"){
-            console.log("Someone got Black!");
+        else if (playerChoice == "Low" && number <= 18){
+            multiplier = 2;
         }
 
-        else if (playerChoice == "Green" && colour == "Green"){
-            console.log("Someone got Money!");
+        else if (playerChoice == "1st Dozen" && number > 0 && number <= 12){
+            multiplier = 3;
+        }
+
+        else if (playerChoice == "2nd Dozen" && number >= 13 && number <= 24){
+            multiplier = 3;
+        }
+
+        else if (playerChoice == "3rd Dozen" && number >= 25 && number <= 36){
+            multiplier = 3;
         }
 
         else{
             if (playerChoice == number){
-                //Player has got the number
+                multiplier = 36;
             }
         }
+
+        currentTotal = Number(currentTotal) + (playerBettingAmount.value * multiplier);
+        totalBalance.title = currentTotal;
+
+        totalBalance.innerHTML = currentTotal;
+
+        playerBettingAmount.value = "";
     }
 }
 
