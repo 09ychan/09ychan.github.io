@@ -148,7 +148,7 @@ function Roulette(){
             }
         }
 
-        if (multiplier != 0){
+        if (multiplier != 0 && playerBettingAmount.value != ""){
             winners.push(document.getElementById("name_" + i).innerHTML);
             amounts.push(playerBettingAmount.value * multiplier);
         }
