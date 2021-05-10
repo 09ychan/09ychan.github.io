@@ -89,17 +89,21 @@ window.onload = function(){
 }
 
 function Roulette(){
-    let number = document.getElementById("rouletteNumber").value;
+    let number = document.getElementById("rouletteNumber");
     let odd = new Boolean(false);
     let winners = new Array();
     let amounts = new Array();
 
-    if (number > 36 || number < 0){
+    if (number.value == ""){
+        return null;
+    }
+
+    if (number.value > 36 || number.value < 0){
         alert("There are only numbers 0 - 36 on a roulette wheel, silly.");
         return null;
     }
 
-    if (number % 2 != 0){
+    if (number.value % 2 != 0){
         odd = true;
     }
 
@@ -118,28 +122,28 @@ function Roulette(){
             multiplier = 2;
         }
 
-        else if (playerChoice == "High" && number >= 19){
+        else if (playerChoice == "High" && number.value >= 19){
             multiplier = 2;
         }
 
-        else if (playerChoice == "Low" && number <= 18){
+        else if (playerChoice == "Low" && number.value <= 18){
             multiplier = 2;
         }
 
-        else if (playerChoice == "1st Dozen" && number > 0 && number <= 12){
+        else if (playerChoice == "1st Dozen" && number.value > 0 && number.value <= 12){
             multiplier = 3;
         }
 
-        else if (playerChoice == "2nd Dozen" && number >= 13 && number <= 24){
+        else if (playerChoice == "2nd Dozen" && number.value >= 13 && number.value <= 24){
             multiplier = 3;
         }
 
-        else if (playerChoice == "3rd Dozen" && number >= 25 && number <= 36){
+        else if (playerChoice == "3rd Dozen" && number.value >= 25 && number.value <= 36){
             multiplier = 3;
         }
 
         else{
-            if (playerChoice == number){
+            if (playerChoice == number.value){
                 multiplier = 36;
             }
         }
@@ -156,6 +160,8 @@ function Roulette(){
 
         playerBettingAmount.value = "";
     }
+
+    number.value = "";
 
     open_modal(winners, amounts);
 }
@@ -186,8 +192,6 @@ function open_modal(winners, amounts){
     for (var i = 0; i < winners.length; i++){
         let text = document.createElement("P");
         text.innerText = "- " + winners[i] + " won " + amounts[i];
-
-        console.log (text.innerText);
 
         section.appendChild(text);
     }
