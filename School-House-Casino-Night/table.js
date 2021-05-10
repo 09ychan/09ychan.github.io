@@ -89,7 +89,6 @@ window.onload = function(){
 }
 
 function Roulette(){
-    let colour = document.getElementById("coloursDropdown").value;
     let number = document.getElementById("rouletteNumber").value;
     let odd = new Boolean(false);
     let winners = new Array();
