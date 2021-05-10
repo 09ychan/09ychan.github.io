@@ -114,6 +114,10 @@ function Roulette(){
         let currentTotal = totalBalance.innerHTML;
         let multiplier = 0;
 
+        if (playerBettingAmount.value == ""){
+            continue;
+        }
+
         if (playerChoice == "Odd" && odd == true){
             multiplier = 2;
         }
@@ -148,7 +152,7 @@ function Roulette(){
             }
         }
 
-        if (multiplier != 0 && playerBettingAmount.value != ""){
+        if (multiplier != 0){
             winners.push(document.getElementById("name_" + i).innerHTML);
             amounts.push(playerBettingAmount.value * multiplier);
         }
