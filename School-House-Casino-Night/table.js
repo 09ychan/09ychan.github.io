@@ -175,10 +175,11 @@ function Roulette(){
     for (let j = 1; j <= 3; j++){
         let podiumElement = document.getElementById("position_" + j);
         let largest = Math.max(...everyone_amounts);
+        let podiumName = "";
 
         for (let i = 0; i < everyone_amounts.length; i++){
             if (everyone_amounts[i] == largest){
-                var podiumName = allPeople[i];
+                podiumName = allPeople[i];
                 everyone_amounts.splice(i, 1);
                 allPeople.splice(i, 1);
                 break;
@@ -186,6 +187,8 @@ function Roulette(){
         }
 
         podiumName = podiumElement.title + podiumName;
+
+        console.log(podiumName);
 
         podiumElement.innerText = podiumName;
     }
