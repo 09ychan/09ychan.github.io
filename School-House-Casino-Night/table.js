@@ -110,6 +110,10 @@ function Roulette(){
     }
 
     for (var i = 1; i <= people; i++){
+        if (document.getElementById('bettingChoice_' + i).value){
+            continue;
+        }
+
         let totalBalance = document.getElementById("totalBalance_" + i);
         let playerBettingAmount = document.getElementById("amount_" + i);
         let playerChoice = document.getElementById("bettingChoice_" + i).value;
