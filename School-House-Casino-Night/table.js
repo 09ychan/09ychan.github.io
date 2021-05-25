@@ -93,6 +93,8 @@ function Roulette(){
     let odd = new Boolean(false);
     let winners = new Array();
     let amounts = new Array();
+    let allPeople = new Array();
+    let everyone_amounts = new Array();
 
     if (number.value == ""){
         return null;
@@ -111,6 +113,7 @@ function Roulette(){
         let totalBalance = document.getElementById("totalBalance_" + i);
         let playerBettingAmount = document.getElementById("amount_" + i);
         let playerChoice = document.getElementById("bettingChoice_" + i).value;
+        let currentName = document.getElementById("name_" + i).innerHTML;
         let currentTotal = totalBalance.innerHTML;
         let multiplier = 0;
 
@@ -153,7 +156,7 @@ function Roulette(){
         }
 
         if (multiplier != 0){
-            winners.push(document.getElementById("name_" + i).innerHTML);
+            winners.push(currentName);
             amounts.push(playerBettingAmount.value * multiplier);
         }
 
@@ -163,8 +166,30 @@ function Roulette(){
         totalBalance.innerHTML = currentTotal;
 
         playerBettingAmount.value = "";
+
+        everyone_amounts.push(currentTotal);
+        allPeople.push(currentName);
+        
     }
 
+    for (let j = 1; j <= 3; j++){
+        let podiumElement = document.getElementById("position_" + j);
+        let largest = Math.max(...everyone_amounts);
+
+        for (let i = 0; i < everyone_amounts.length; i++){
+            if (everyone_amounts[i] == largest){
+                var podiumName = allPeople[i];
+                everyone_amounts.splice(i, 1);
+                allPeople.splice(i, 1);
+                break;
+            }
+        }
+
+        podiumName = podiumElement.title + podiumName;
+
+        podiumElement.innerText = podiumName;
+    }
+    
     number.value = "";
 
     open_modal(winners, amounts);
