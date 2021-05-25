@@ -199,6 +199,9 @@ function Roulette(){
 }
 
 function change_name(id){
+    console.log(id);
+    id_2 = id-1;
+    console.log(id_2);
     let original_name = document.getElementById("name_"+id).innerText;
     let output = document.getElementById("name_"+id);
     let input_for_name = document.createElement("input");
@@ -209,7 +212,7 @@ function change_name(id){
     output.addEventListener("change",function(){
         let new_name = input_for_name.value;
         if (new_name == ""){
-            document.getElementById("body_of_table").deleteRow();
+            document.getElementById("body_of_table").deleteRow(id_2);
         }
         output.innerText = new_name;
         output.setAttribute("ondblclick", "change_name("+id+")");
