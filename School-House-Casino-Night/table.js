@@ -110,69 +110,79 @@ function Roulette(){
     }
 
     for (var i = 1; i <= people; i++){
-        if (document.getElementById('bettingChoice_' + i).value){
-            continue;
-        }
+        let error = false;
+        try{
+            let trial = document.getElementById('bettingChoice_' + i).value;
+            error = false;
+        }catch(problem){
+            error = true;
+        }finally {
+            if (error == false){
+                let totalBalance = document.getElementById("totalBalance_" + i);
+                let playerBettingAmount = document.getElementById("amount_" + i);
+                let playerChoice = document.getElementById("bettingChoice_" + i).value;
+                let currentName = document.getElementById("name_" + i).innerHTML;
+                let currentTotal = totalBalance.innerHTML;
+                let multiplier = 0;
 
-        let totalBalance = document.getElementById("totalBalance_" + i);
-        let playerBettingAmount = document.getElementById("amount_" + i);
-        let playerChoice = document.getElementById("bettingChoice_" + i).value;
-        let currentName = document.getElementById("name_" + i).innerHTML;
-        let currentTotal = totalBalance.innerHTML;
-        let multiplier = 0;
+                if (playerBettingAmount.value == ""){
+                    continue;
+                }
 
-        if (playerBettingAmount.value == ""){
-            continue;
-        }
+                if (playerChoice == "Odd" && odd == true){
+                    multiplier = 2;
+                }
 
-        if (playerChoice == "Odd" && odd == true){
-            multiplier = 2;
-        }
+                else if (playerChoice == "Even" && odd == false){
+                    multiplier = 2;
+                }
 
-        else if (playerChoice == "Even" && odd == false){
-            multiplier = 2;
-        }
+                else if (playerChoice == "High" && number.value >= 19){
+                    multiplier = 2;
+                }
 
-        else if (playerChoice == "High" && number.value >= 19){
-            multiplier = 2;
-        }
+                else if (playerChoice == "Low" && number.value <= 18){
+                    multiplier = 2;
+                }
 
-        else if (playerChoice == "Low" && number.value <= 18){
-            multiplier = 2;
-        }
+                else if (playerChoice == "1st Dozen" && number.value > 0 && number.value <= 12){
+                    multiplier = 3;
+                }
 
-        else if (playerChoice == "1st Dozen" && number.value > 0 && number.value <= 12){
-            multiplier = 3;
-        }
+                else if (playerChoice == "2nd Dozen" && number.value >= 13 && number.value <= 24){
+                    multiplier = 3;
+                }
 
-        else if (playerChoice == "2nd Dozen" && number.value >= 13 && number.value <= 24){
-            multiplier = 3;
-        }
+                else if (playerChoice == "3rd Dozen" && number.value >= 25 && number.value <= 36){
+                    multiplier = 3;
+                }
 
-        else if (playerChoice == "3rd Dozen" && number.value >= 25 && number.value <= 36){
-            multiplier = 3;
-        }
+                else{
+                    if (playerChoice == number.value){
+                        multiplier = 36;
+                    }
+                }
 
-        else{
-            if (playerChoice == number.value){
-                multiplier = 36;
+                if (multiplier != 0){
+                    winners.push(currentName);
+                    amounts.push(playerBettingAmount.value * multiplier);
+                }
+
+                currentTotal = Number(currentTotal) + (playerBettingAmount.value * multiplier);
+                totalBalance.title = currentTotal;
+
+                totalBalance.innerHTML = currentTotal;
+
+                playerBettingAmount.value = "";
+
+                everyone_amounts.push(currentTotal);
+                allPeople.push(currentName);
+            }
+            else{
+                continue
             }
         }
 
-        if (multiplier != 0){
-            winners.push(currentName);
-            amounts.push(playerBettingAmount.value * multiplier);
-        }
-
-        currentTotal = Number(currentTotal) + (playerBettingAmount.value * multiplier);
-        totalBalance.title = currentTotal;
-
-        totalBalance.innerHTML = currentTotal;
-
-        playerBettingAmount.value = "";
-
-        everyone_amounts.push(currentTotal);
-        allPeople.push(currentName);
         
     }
 
