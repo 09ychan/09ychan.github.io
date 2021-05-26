@@ -61,20 +61,20 @@ function CreateRow(){
 
 function calculate_remainder(id){
     let amount = "amount_" + id;
-    let bettingAmount = document.getElementById(amount).value;
+    let bettingAmount = document.getElementById(amount);
     let totalAmount = document.getElementById("totalBalance_" + id).title;
 
-    if (bettingAmount > Number(totalAmount)){
-        alert("You can't bet more than you have.");
+    if (bettingAmount.value > Number(totalAmount)){
+        bettingAmount.value = Number(totalAmount);
         return null;
     }
 
-    if (bettingAmount < 0){
+    if (bettingAmount.value < 0){
         alert ("You can't bet negative numbers.");
         return null;
     }
 
-    totalAmount = totalAmount - bettingAmount;
+    totalAmount = totalAmount - bettingAmount.value;
 
     document.getElementById("totalBalance_" + id).innerHTML = totalAmount;
 
@@ -201,9 +201,6 @@ function Roulette(){
         }
 
         podiumName = podiumElement.title + podiumName;
-
-        console.log(podiumName);
-
         podiumElement.innerText = podiumName;
     }
     
